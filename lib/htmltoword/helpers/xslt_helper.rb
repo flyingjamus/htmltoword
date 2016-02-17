@@ -9,7 +9,9 @@ module Htmltoword
       File.join(Htmltoword.config.default_xslt_path, "#{template_name}.xslt")
     end
 
-    def xslt(stylesheet_name: nil, stylesheet_path: nil)
+    def xslt(options = {})
+      stylesheet_name = options[:stylesheet_name]
+      stylesheet_path = options[:stylesheet_path]
       return Nokogiri::XSLT(File.open(stylesheet_path)) if stylesheet_path
       Nokogiri::XSLT(File.open(xslt_path(stylesheet_name)))
     end
